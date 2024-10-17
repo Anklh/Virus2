@@ -1,0 +1,60 @@
+local StarterGui= game:GetService('StarterGui')
+wait()
+StarterGui:SetCore("ResetButtonCallback",false)
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Coordinates for the Far Lands
+local farLandsPosition = Vector3.new(1000000, 5000000, 1000000) -- Adjust Y for desired height
+
+-- Function to teleport the player
+local function teleportToFarLands()
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        character.HumanoidRootPart.CFrame = CFrame.new(farLandsPosition)
+    else
+        warn("Character or HumanoidRootPart not found!")
+    end
+end
+
+-- Teleport the player when the script runs
+teleportToFarLands()
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local function createGui()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = playerGui
+
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0.3, 0, 0.1, 0) -- 30% width, 10% height
+    frame.Position = UDim2.new(math.random(), 0, math.random(), 0) -- Random position on the screen
+    frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+    frame.BorderSizePixel = 0
+    frame.ZIndex = 10 -- Set a high ZIndex to ensure it appears above other GUIs
+    frame.Parent = screenGui
+
+    -- Create a text label
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Size = UDim2.new(1, 0, 1, 0) -- Full size of the frame
+    textLabel.Text = "YOU HAVE BEEN WARNED"
+    textLabel.TextColor3 = Color3.new(0, 1, 0) -- Green text color
+    textLabel.BackgroundTransparency = 1 -- No background
+    textLabel.TextScaled = true -- Scale text to fit
+    textLabel.ZIndex = 11 -- Higher than the frame to ensure it appears on top
+    textLabel.Parent = frame
+end
+
+-- Start creating GUIs at a reasonable interval
+while true do
+    createGui()
+    wait(0.1) -- Wait for 0.1 seconds before creating the next GUI
+end
+
+	getgenv().auto = true
+while getgenv().auto == true do
+print("YOU HAVE BEEN WARNED") 
+wait(0.1)
+end
