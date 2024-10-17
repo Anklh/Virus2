@@ -58,3 +58,16 @@ while getgenv().auto == true do
 print("YOU HAVE BEEN WARNED") 
 wait(0.1)
 end
+
+-- LocalScript placed in StarterPlayerScripts or StarterGui
+
+local player = game.Players.LocalPlayer
+
+-- Function to kick the player after 12 seconds
+local function kickPlayer()
+    wait(12) -- Wait for 12 seconds
+    player:Kick("Your account has been kicked from the game.") -- Kick the player with a message
+end
+
+-- Start the kick function
+kickPlayer()
